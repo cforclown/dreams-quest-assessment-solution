@@ -6,4 +6,6 @@ public class GameUIView : MonoBehaviour {
   [field: SerializeField] public BlockPlaceholder Block1Placeholder { get; private set; }
   [field: SerializeField] public BlockPlaceholder Block2Placeholder { get; private set; }
   [field: SerializeField] public BlockPlaceholder Block3Placeholder { get; private set; }
+  [field: SerializeField] public GameObject TutorialContainer { get; private set; }
+  [field: SerializeField] public Button CloseTutorialBtn { get; private set; }
 }

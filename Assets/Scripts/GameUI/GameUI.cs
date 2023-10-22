@@ -4,10 +4,10 @@ using UnityEngine;
 namespace MainSceneUI {
   [RequireComponent(typeof(GameUIView))]
   public class GameUI : MonoBehaviour {
-    private GameUIView gameUIView;
+    private GameUIView view;
 
     void Awake() {
-      gameUIView = GetComponent<GameUIView>();
+      view = GetComponent<GameUIView>();
       Canvas canvas = GetComponent<Canvas>();
       canvas.renderMode = RenderMode.ScreenSpaceCamera;
       canvas.planeDistance = 0.5f;
@@ -15,7 +15,15 @@ namespace MainSceneUI {
     }
 
     void Start() {
-      gameUIView.MainMenuBtn.onClick.AddListener(OnMainMenuBtnClick);
+      view.MainMenuBtn.onClick.AddListener(OnMainMenuBtnClick);
+      view.CloseTutorialBtn.onClick.AddListener(() => view.TutorialContainer.SetActive(false));
+
+      view.TutorialContainer.SetActive(true);
+    }
+
+    private void OnDestroy() {
+      view.MainMenuBtn.onClick.RemoveAllListeners();
+      view.CloseTutorialBtn.onClick.RemoveAllListeners();
     }
 
     private void OnMainMenuBtnClick() {
